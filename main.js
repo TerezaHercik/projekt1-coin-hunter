@@ -63,21 +63,51 @@ function novaMince() {
 function priStiskuKlavesy(udalost) {
 
 	// šipka vlevo
+	if (udalost.key === "ArrowLeft") {
+		panacekX -= 10;
+		if (panacekX + panacekSirka > window.innerWidth) {
+			panacekX = window.innerWidth - panacekSirka;
+		}
+		panacek.src = "obrazky/panacek-vlevo.png";
 
+	}
 
 	// šipka vpravo
-
+	if (udalost.key === "ArrowRight") {
+		panacekX += 10;
+		if (panacekX + panacekSirka > window.innerWidth) {
+			panacekX = window.innerWidth - panacekSirka;
+		}
+		panacek.src = "obrazky/panacek-vpravo.png";
+	
+	}
 
 	// šipka nahoru
-
+	if (udalost.key === "ArrowUp") {
+		panacekY -= 10;
+		if (panacekY < 0) {
+			panacekY = 0;
+		}
+		panacek.src = "obrazky/panacek-nahoru.png";
+	
+	}
 
 	// šipka dolů
+	if (udalost.key === "ArrowDown") {
+		panacekY += 10;
+		if (panacekY + panacekVyska > window.innerHeight) {
+			panacekY = window.innerHeight - panacekVyska;
+		}
+		panacek.src = "obrazky/panacek.png";
+	
+	}
 
 
 	// panáčka umistíme na nově vypočítanou pozici
-
+	umistiPanacka();
 
 	// otestujeme kolizi panáčka s mincí
+	otestujKolizi();
 
 
 }
@@ -85,4 +115,5 @@ function priStiskuKlavesy(udalost) {
 // fuknce pro otestování kolize panáčka s mincí
 function otestujKolizi() {
 	// musíme to napsat :)
+	
 }
