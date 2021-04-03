@@ -5,6 +5,8 @@ let mince, minceX, minceY, minceSirka, minceVyska;
 
 panacek = document.querySelector("#panacek");
 mince = document.querySelector("#mince");
+bod = document.querySelector("#score");
+cink = document.querySelector("#zvukmince");
 
 // tato funkce se spustí při načtení stránky
 // tj. ve chvíli, kdy je načtené komplet HTML, CSS a všechny obrázky a zvuky
@@ -42,7 +44,6 @@ function umistiPanacka() {
 	// musíme to napsat :)
 	panacek.style.left = panacekX + 'px';
 	panacek.style.top = panacekY + 'px';
-	console.log("zkoušíš umístit panáčka");
 }
 
 // funkce pro nahodné vygenerování nové pozice mince
@@ -53,7 +54,6 @@ function novaMince() {
 	minceY = Math.round(Math.random() * (window.innerHeight - minceVyska));
 	mince.style.left = minceX + 'px';
 	mince.style.top = minceY + 'px';
-	console.log("Pokoušíš se umístit minci na náhodnou pozici");
 }
 
 // tato funkce se zavolá při stisku klávesy
@@ -112,6 +112,16 @@ function priStiskuKlavesy(udalost) {
 
 }
 
+function prictiBod() {
+	// při sebrání mince se přičte jeden bod na počítadle
+	let score = 0;
+	bod.innerHTML = ++score;
+}
+
+function zvukMince() {
+	cink.play();
+  }
+
 // fuknce pro otestování kolize panáčka s mincí
 function otestujKolizi() {
 	// musíme to napsat :)
@@ -122,7 +132,13 @@ function otestujKolizi() {
 		minceY + minceVyska < panacekY
 	)) {
 		novaMince();
-		console.log("Panák sežral minci");	
-	};
-	
-}
+		console.log("Panák sežral minci");
+		prictiBod();
+		console.log("Přičti bod");
+		zvukMince();
+		console.log("Přehraj cinknutí");
+	};	
+
+};
+
+
