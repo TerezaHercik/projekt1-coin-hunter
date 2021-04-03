@@ -115,5 +115,14 @@ function priStiskuKlavesy(udalost) {
 // fuknce pro otestování kolize panáčka s mincí
 function otestujKolizi() {
 	// musíme to napsat :)
+	if(!(
+		panacekX + panacekSirka < minceX || 
+		minceX + minceSirka < panacekX || 
+		panacekY + panacekVyska < minceY ||
+		minceY + minceVyska < panacekY
+	)) {
+		novaMince();
+		console.log("Panák sežral minci");	
+	};
 	
 }
