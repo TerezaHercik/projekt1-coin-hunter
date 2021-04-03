@@ -5,7 +5,6 @@ let mince, minceX, minceY, minceSirka, minceVyska;
 
 panacek = document.querySelector("#panacek");
 mince = document.querySelector("#mince");
-bod = document.querySelector("#score");
 cink = document.querySelector("#zvukmince");
 
 // tato funkce se spustí při načtení stránky
@@ -114,13 +113,15 @@ function priStiskuKlavesy(udalost) {
 
 function prictiBod() {
 	// při sebrání mince se přičte jeden bod na počítadle
-	let score = 0;
-	bod.innerHTML = ++score;
+	let score = document.querySelector("#score").innerHTML;
+	score++;
+	document.querySelector("#score").innerHTML = score;
 }
 
 function zvukMince() {
 	cink.play();
   }
+
 
 // fuknce pro otestování kolize panáčka s mincí
 function otestujKolizi() {
@@ -140,5 +141,7 @@ function otestujKolizi() {
 	};	
 
 };
+
+
 
 
