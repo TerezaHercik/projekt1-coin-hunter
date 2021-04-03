@@ -49,6 +49,11 @@ function umistiPanacka() {
 // a umístění mince na tyto souřadnice
 function novaMince() {
 	// musíme to napsat :)
+	minceX = Math.round(Math.random() * (window.innerWidth - minceSirka));
+	minceY = Math.round(Math.random() * (window.innerHeight - minceVyska));
+	mince.style.left = minceX + 'px';
+	mince.style.top = minceY + 'px';
+	console.log("Pokoušíš se umístit minci na náhodnou pozici");
 }
 
 // tato funkce se zavolá při stisku klávesy
