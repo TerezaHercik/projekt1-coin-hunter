@@ -2,10 +2,8 @@
 // ty jsou pak použitelné kdekoliv v programu
 let panacek, panacekX, panacekY, panacekSirka, panacekVyska;
 let mince, minceX, minceY, minceSirka, minceVyska;
+let score, pocetMinci
 
-panacek = document.querySelector("#panacek");
-mince = document.querySelector("#mince");
-cink = document.querySelector("#zvukmince");
 
 // tato funkce se spustí při načtení stránky
 // tj. ve chvíli, kdy je načtené komplet HTML, CSS a všechny obrázky a zvuky
@@ -13,7 +11,12 @@ function priNacteniStranky() {
 
 	// do globálních proměnných si uložíme odkaz na objekty panáčka a mince,
 	// abychom je nemuseli při každém použití znovu na stránce hledat pomocí document.querySelector
-
+	panacek = document.querySelector("#panacek");
+	mince = document.querySelector("#mince");
+	pocetMinci = 0;
+	score = document.querySelector("#score");
+	cink = document.querySelector("#zvukmince");
+	fanfara = document.querySelector("#zvukfanfara");
 
 	// zjistíme šířku a výšku panáčka
 	panacekSirka = panacek.width;
@@ -111,21 +114,18 @@ function priStiskuKlavesy(udalost) {
 
 }
 
-function prictiBod() {
-	// při sebrání mince se přičte jeden bod na počítadle
-	let score = document.querySelector("#score").innerHTML;
-	score++;
-	document.querySelector("#score").innerHTML = score;
-}
 
 function zvukMince() {
 	cink.play();
   }
 
+function zvukFanfara() {
+	fanfara.play();
+}
 
-// fuknce pro otestování kolize panáčka s mincí
+
+// funkce pro otestování kolize panáčka s mincí
 function otestujKolizi() {
-	// musíme to napsat :)
 	if(!(
 		panacekX + panacekSirka < minceX || 
 		minceX + minceSirka < panacekX || 
@@ -134,13 +134,36 @@ function otestujKolizi() {
 	)) {
 		novaMince();
 		console.log("Panák sežral minci");
-		prictiBod();
+		prictiScore();
 		console.log("Přičti bod");
 		zvukMince();
 		console.log("Přehraj cinknutí");
-	};	
+		
+	};
+	
 
-};
+}
+
+// podmínka, která počítá score a v případě score > 5, přehraje fanfáru
+function prictiScore() {
+	
+	// zvýšíme skóre o 1
+	pocetMinci++;
+
+	// vypíšeme skóre do textu na obrazovce
+	score.innerText = pocetMinci;
+
+	// otestujeme, zda už hráč nemá 5 bodů
+	if (pocetMinci === 5) {
+		// zobrazíme vítěznou hlášku
+		alert('Well done :) You won this awesome game!');
+		zvukFanfara();
+		console.log("Hustě ty, vyhrálas!");
+	}
+}
+
+
+
 
 
 
